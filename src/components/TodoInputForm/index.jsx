@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
 import * as actionCreators from '../../actions';
 import styles from './TodoInputForm.module.sass';
+import Input from './Input';
 
 function TodoInputForm () {
   const dispatch = useDispatch();
@@ -14,15 +15,18 @@ function TodoInputForm () {
     createTodo(todo);
     formikBag.resetForm();
   };
+  const classes = {
+    valid: styles.valid,
+    invalid: styles.invalid,
+    input: styles.input,
+  };
   const TODO_SCHEMA = yup.object({
     todo: yup
       .string()
-      .max(100, 'Too big task :)')
+      .max(50, 'Too big task :)')
       .matches(/^\S+.*/, 'No spaces in start')
       .required('Enter task'),
   });
-
-  // styles react on valid
 
   return (
     <Formik
@@ -41,7 +45,10 @@ function TodoInputForm () {
         <button type='submit' className={styles.button}>
           Submit
         </button>
-        <ErrorMessage name='todo' render={msg => <div>{msg}</div>} />
+        <ErrorMessage
+          name='todo'
+          render={msg => <div className={styles.error}>{msg}</div>}
+        />
       </Form>
     </Formik>
   );

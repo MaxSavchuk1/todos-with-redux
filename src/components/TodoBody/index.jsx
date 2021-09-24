@@ -9,6 +9,7 @@ function TodoBody () {
   const { todos } = useSelector(state => state.todos);
   const dispatch = useDispatch();
   const { deleteTodo } = bindActionCreators(actionCreators, dispatch);
+
   const mapTodos = ({ id, todo }) => {
     const deleteHandler = () => deleteTodo(id);
     return (
@@ -22,7 +23,7 @@ function TodoBody () {
     );
   };
   return (
-    <div>
+    <div className={styles.listContainer}>
       <ul>{todos.map(mapTodos)}</ul>
     </div>
   );
