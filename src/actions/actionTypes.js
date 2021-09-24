@@ -1,0 +1,6 @@
+const ACTION_TYPES = {
+  CREATE_TODO: 'CREATE_TODO',
+  DELETE_TODO: 'DELETE_TODO',
+};
+
+export default ACTION_TYPES;
