@@ -30,10 +30,17 @@ function TodoInputForm () {
       onSubmit={submitHandler}
       validationSchema={TODO_SCHEMA}
     >
-      <Form>
-        <Field type='text' name='todo' placeholder='Enter todo here' />
+      <Form className={styles.formContainer}>
+        <Field
+          type='text'
+          name='todo'
+          placeholder='Enter todo here'
+          className={styles.input}
+        />
 
-        <button type='submit'>Submit</button>
+        <button type='submit' className={styles.button}>
+          Submit
+        </button>
         <ErrorMessage name='todo' render={msg => <div>{msg}</div>} />
       </Form>
     </Formik>

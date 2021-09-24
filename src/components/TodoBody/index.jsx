@@ -12,7 +12,7 @@ function TodoBody () {
   const mapTodos = ({ id, todo }) => {
     const deleteHandler = () => deleteTodo(id);
     return (
-      <li key={id}>
+      <li key={id} className={styles.listItem}>
         <input type='checkbox' />
         {todo}
         <button onClick={deleteHandler}>

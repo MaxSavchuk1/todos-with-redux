@@ -5,7 +5,7 @@ import styles from './TodoPage.module.sass';
 
 function TodoPage () {
   return (
-    <div>
+    <div className={styles.todosContainer}>
       <TodoInputForm />
       <TodoBody />
     </div>
