@@ -1,14 +1,15 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import * as yup from 'yup';
 import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
-import * as actionCreators from '../../actions';
-import styles from './TodoInputForm.module.sass';
-import Input from './Input';
 import classNames from 'classnames';
+import * as actionCreators from '../../actions';
+import styles from './TodoForm.module.sass';
+import Input from '../Input';
+import { TODO_SCHEMA } from '../../utils/validationSchemas';
 
-function TodoInputForm () {
+function TodoForm () {
+  const [isVisible, setIsVisible] = useState(false);
   const dispatch = useDispatch();
   const { createTodo } = bindActionCreators(actionCreators, dispatch);
   const initialValues = { todo: '' };
@@ -16,19 +17,13 @@ function TodoInputForm () {
     createTodo(todo);
     formikBag.resetForm();
   };
-  const classes = {
+  const inputClasses = {
     valid: styles.valid,
     invalid: styles.invalid,
     input: styles.input,
+    errorStyle: styles.error,
   };
-  const TODO_SCHEMA = yup.object({
-    todo: yup
-      .string()
-      .max(50, 'Too big task :)')
-      .matches(/^\S+.*/, 'No spaces in start')
-      .required('Enter task'),
-  });
-  const [isVisible, setIsVisible] = useState(false);
+
   const focusHandler = () => setIsVisible(!isVisible);
   const buttonStyles = classNames(styles.button, {
     [styles.buttonDisplay]: isVisible,
@@ -40,20 +35,19 @@ function TodoInputForm () {
       validationSchema={TODO_SCHEMA}
     >
       <Form className={styles.formContainer} onBlur={focusHandler}>
-        <Field
+        <Input
           type='text'
           name='todo'
           placeholder='Enter todo here'
-          className={styles.input}
+          classes={inputClasses}
           onFocus={focusHandler}
         />
-
         <button type='submit' className={buttonStyles}>
-          Submit
+          SUBMIT
         </button>
       </Form>
     </Formik>
   );
 }
 
-export default TodoInputForm;
+export default TodoForm;

@@ -1,12 +1,12 @@
 import React from 'react';
 import TodoBody from '../../components/TodoBody';
-import TodoInputForm from '../../components/TodoInputForm';
+import TodoForm from '../../components/TodoForm';
 import styles from './TodoPage.module.sass';
 
 function TodoPage () {
   return (
     <div className={styles.todosContainer}>
-      <TodoInputForm />
+      <TodoForm />
       <TodoBody />
     </div>
   );

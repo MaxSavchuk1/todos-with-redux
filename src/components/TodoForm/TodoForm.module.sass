@@ -1,6 +1,7 @@
 .formContainer
   width:100%
   display: flex
+  position: relative
 
 .input
   width: 150px
@@ -21,17 +22,25 @@
 
 .button
   display: none
-  text-transform: uppercase
   width: 85px
   box-shadow: 3px 3px 6px black
   border-radius: 0 5px 5px 0
+  cursor: pointer
 
 .buttonDisplay
-  display: block
+  display: initial
 
 .error
   position: absolute
-  top: 0
+  top: -50px
+  width: 100%
+  text-align: center
+  text-transform: uppercase
+  color: #ff7171
+  &::before
+    content: '! - '
+  &::after
+    content: ' - !'
 
 .valid
     background-color: #b0ffd1
