@@ -1,11 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import * as yup from 'yup';
 import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
 import * as actionCreators from '../../actions';
 import styles from './TodoInputForm.module.sass';
 import Input from './Input';
+import classNames from 'classnames';
 
 function TodoInputForm () {
   const dispatch = useDispatch();
@@ -27,28 +28,29 @@ function TodoInputForm () {
       .matches(/^\S+.*/, 'No spaces in start')
       .required('Enter task'),
   });
-
+  const [isVisible, setIsVisible] = useState(false);
+  const focusHandler = () => setIsVisible(!isVisible);
+  const buttonStyles = classNames(styles.button, {
+    [styles.buttonDisplay]: isVisible,
+  });
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={submitHandler}
       validationSchema={TODO_SCHEMA}
     >
-      <Form className={styles.formContainer}>
+      <Form className={styles.formContainer} onBlur={focusHandler}>
         <Field
           type='text'
           name='todo'
           placeholder='Enter todo here'
           className={styles.input}
+          onFocus={focusHandler}
         />
 
-        <button type='submit' className={styles.button}>
+        <button type='submit' className={buttonStyles}>
           Submit
         </button>
-        <ErrorMessage
-          name='todo'
-          render={msg => <div className={styles.error}>{msg}</div>}
-        />
       </Form>
     </Formik>
   );

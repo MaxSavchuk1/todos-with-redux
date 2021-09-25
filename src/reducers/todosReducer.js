@@ -20,7 +20,6 @@ function todosReducer (state = initialState, action) {
     }
     case ACTION_TYPES.DELETE_TODO: {
       const { id } = action;
-      console.log(id);
       const { todos } = state;
       const newTodos = [...todos];
       newTodos.splice(
