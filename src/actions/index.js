@@ -14,9 +14,10 @@ export const deleteTodo = id => {
   };
 };
 
-export const updateTodo = isDone => {
+export const updateTodo = (isDone, id) => {
   return {
     type: ACTION_TYPES.UPDATE_TODO,
     isDone,
+    id,
   };
 };

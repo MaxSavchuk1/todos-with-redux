@@ -30,9 +30,12 @@ function todosReducer (state = initialState, action) {
       return { todos: newTodos };
     }
     case ACTION_TYPES.UPDATE_TODO: {
-      const { isDone } = action;
-      const { todos } = state; // здесь доделать!
-      return state;
+      const { isDone, id } = action;
+      const { todos } = state;
+      console.log(todos);
+      const newTodos = [...todos];
+      newTodos[newTodos.findIndex(todo => id === todo.id)].isDone = !isDone;
+      return { todos: newTodos };
     }
     default:
       return state;

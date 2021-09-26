@@ -15,7 +15,7 @@ function TodoBody () {
 
   const mapTodos = ({ id, todo, isDone }) => {
     const deleteHandler = () => deleteTodo(id);
-    const updateHandler = () => updateTodo(isDone);
+    const updateHandler = () => updateTodo(isDone, id);
     return (
       <li key={id} className={styles.listItem}>
         <input type='checkbox' checked={isDone} onChange={updateHandler} />
