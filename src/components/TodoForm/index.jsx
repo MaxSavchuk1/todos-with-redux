@@ -10,9 +10,9 @@ import { TODO_SCHEMA } from '../../utils/validationSchemas';
 function TodoForm () {
   const dispatch = useDispatch();
   const { createTodo } = bindActionCreators(actionCreators, dispatch);
-  const initialValues = { todo: '' };
-  const submitHandler = ({ todo }, formikBag) => {
-    createTodo(todo);
+  const initialValues = { todo: '', isDone: false };
+  const submitHandler = (values, formikBag) => {
+    createTodo(values);
     formikBag.resetForm();
   };
   const inputClasses = {

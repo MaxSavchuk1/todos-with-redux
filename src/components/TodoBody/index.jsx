@@ -8,13 +8,17 @@ import styles from './TodoBody.module.sass';
 function TodoBody () {
   const { todos } = useSelector(state => state.todos);
   const dispatch = useDispatch();
-  const { deleteTodo } = bindActionCreators(actionCreators, dispatch);
+  const { deleteTodo, updateTodo } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
-  const mapTodos = ({ id, todo }) => {
+  const mapTodos = ({ id, todo, isDone }) => {
     const deleteHandler = () => deleteTodo(id);
+    const updateHandler = () => updateTodo(isDone);
     return (
       <li key={id} className={styles.listItem}>
-        <input type='checkbox' />
+        <input type='checkbox' checked={isDone} onChange={updateHandler} />
         {todo}
         <button onClick={deleteHandler}>
           <DeleteIcon fontSize='small' />

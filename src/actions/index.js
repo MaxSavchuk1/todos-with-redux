@@ -1,9 +1,9 @@
 import ACTION_TYPES from './actionTypes';
 
-export const createTodo = todo => {
+export const createTodo = values => {
   return {
     type: ACTION_TYPES.CREATE_TODO,
-    todo,
+    values,
   };
 };
 
@@ -11,5 +11,12 @@ export const deleteTodo = id => {
   return {
     type: ACTION_TYPES.DELETE_TODO,
     id,
+  };
+};
+
+export const updateTodo = isDone => {
+  return {
+    type: ACTION_TYPES.UPDATE_TODO,
+    isDone,
   };
 };

@@ -9,11 +9,12 @@ function todosReducer (state = initialState, action) {
 
   switch (type) {
     case ACTION_TYPES.CREATE_TODO: {
-      const { todo } = action;
+      const { values } = action;
       const { todos } = state;
+      console.log(values, todos);
       const newTodo = {
         id: Date.now(),
-        todo,
+        ...values,
       };
       const newTodos = [...todos, newTodo];
       return { todos: newTodos };
@@ -27,6 +28,11 @@ function todosReducer (state = initialState, action) {
         1
       );
       return { todos: newTodos };
+    }
+    case ACTION_TYPES.UPDATE_TODO: {
+      const { isDone } = action;
+      const { todos } = state; // здесь доделать!
+      return state;
     }
     default:
       return state;
